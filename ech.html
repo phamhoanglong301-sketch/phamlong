@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Kho học phần - Trang chủ</title>
+  <style>
+    :root{
+      --bg:#f5f7fb;
+      --card:#ffffff;
+      --accent:#2b7cff;
+      --muted:#666;
+      --glass: rgba(255,255,255,0.7);
+      --radius:14px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: "Inter", Roboto, Arial, sans-serif;
+      background: linear-gradient(180deg,#f7fbff 0%, var(--bg) 100%);
+      color:#111;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    header{
+      padding:28px 20px;
+      display:flex;
+      gap:20px;
+      align-items:center;
+      justify-content:space-between;
+      max-width:1100px;
+      margin:0 auto;
+    }
+    .brand{
+      display:flex;
+      gap:14px;
+      align-items:center;
+    }
+    .logo{
+      width:54px;height:54px;border-radius:12px;
+      background:linear-gradient(135deg,#2b7cff,#7ad0ff);
+      display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;
+      box-shadow: 0 6px 18px rgba(43,124,255,0.18);
+      font-size:18px;
+    }
+    .title h1{margin:0;font-size:20px}
+    .title p{margin:0;color:var(--muted);font-size:13px}
+
+    .controls{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .search{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      background:var(--card);
+      padding:8px 12px;
+      border-radius:12px;
+      box-shadow: 0 6px 18px rgba(16,24,40,0.06);
+    }
+    .search input{
+      border:0;outline:0;background:transparent;font-size:14px;width:220px;
+    }
+    .add-btn{
+      background:var(--accent);
+      color:#fff;padding:10px 14px;border-radius:10px;border:0;cursor:pointer;
+      box-shadow: 0 8px 20px rgba(43,124,255,0.18);
+    }
+
+    main{
+      max-width:1100px;margin:18px auto;padding:0 20px 80px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:18px;
+    }
+
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:18px;
+      min-height:130px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      box-shadow: 0 8px 30px rgba(12,20,40,0.06);
+      transition:transform .18s ease, box-shadow .18s ease;
+    }
+    .card:hover{ transform:translateY(-6px); box-shadow: 0 18px 40px rgba(12,20,40,0.12); }
+    .card .top{display:flex;gap:12px;align-items:center}
+    .icon{
+      width:54px;height:54px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+      font-size:22px;color:#fff;font-weight:700;
+    }
+    .ic-1{ background:linear-gradient(135deg,#ff9a9e,#fecfef); }
+    .ic-2{ background:linear-gradient(135deg,#ffd27a,#ff9a3a); }
+    .ic-3{ background:linear-gradient(135deg,#9be7ff,#4da6ff); }
+    .ic-4{ background:linear-gradient(135deg,#c6f6d5,#48d29a); }
+    .ic-5{ background:linear-gradient(135deg,#e6e6fa,#bda1ff); }
+    .ic-6{ background:linear-gradient(135deg,#ffd6e0,#ff9fb8); }
+    .ic-7{ background:linear-gradient(135deg,#c3f0ff,#7ad0ff); }
+    .ic-8{ background:linear-gradient(135deg,#ffe7b3,#ffbf6b); }
+    .ic-9{ background:linear-gradient(135deg,#dfe7ff,#9aaeff); }
+
+    .card h3{margin:0;font-size:16px}
+    .card p{margin:6px 0 0;color:var(--muted);font-size:13px}
+
+    .card .footer{
+      display:flex;justify-content:space-between;align-items:center;margin-top:12px;
+      gap:8px;
+    }
+    .link{
+      text-decoration:none;color:var(--accent);font-weight:600;font-size:13px;
+    }
+    .meta{font-size:12px;color:#888}
+
+    /* Responsive */
+    @media (max-width:900px){
+      .grid{ grid-template-columns: repeat(2, 1fr); }
+      .search input{ width:140px; }
+    }
+    @media (max-width:560px){
+      header{flex-direction:column;align-items:flex-start;gap:12px}
+      .grid{ grid-template-columns: 1fr; }
+      .search input{ width:90px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">SH</div>
+      <div class="title">
+        <h1>Kho học phần của tôi</h1>
+        <p>Tổng hợp ghi chú, slide, bài tập — 9 học phần</p>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="search" title="Tìm môn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16z" stroke="#666" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 21l-4.35-4.35" stroke="#666" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <input id="searchInput" placeholder="Tìm môn (gõ tên)...">
+      </div>
+      <button class="add-btn" id="customizeBtn">Tùy chỉnh</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="grid" id="grid">
+      <!-- 9 card mẫu: đổi title và desc, và href khi bạn tạo thư mục -->
+      <div class="card" data-title="Môn 1 - Toán rời rạc">
+        <div>
+          <div class="top">
+            <div class="icon ic-1">1</div>
+            <div>
+              <h3>Môn 1 - Toán rời rạc</h3>
+              <p>Ghi chú cơ bản, bài tập, slide.</p>
+            </div>
+          </div>
+        </div>
+        <div class="footer">
+          <a class="link" href="https://drive.google.com/drive/folders/1iwLzGR0aG6dYxzxzeVBv5Yg2GHHi3hGz?usp=drive_link" target="_blank">Mở</a>
+          <div class="meta">0 file</div>
+        </div>
+      </div>
+
+      <div class="card" data-title="Môn 2 - Lập trình C">
+        <div>
+          <div class="top">
+            <div class="icon ic-2">2</div>
+            <div>
+              <h3>Môn 2 - Toán cao cấp</h3>
+              <p>Bài tập toán cao cấp với đề cương.</p>
+            </div>
+          </div>
+        </div>
+        <div class="footer">
+          <a class="link" href="https://drive.google.com/drive/folders/13PcJea8mMjHMHCeByEk7wBpq_QRnkOl4?usp=drive_link" target="_blank">Mở</a>
+          <div class="meta">0 file</div>
+        </div>
+      </div>
+
+      <div class="card" data-title="Môn 3 - Cấu trúc dữ liệu">
+        <div>
+          <div class="top">
+            <div class="icon ic-3">3</div>
+            <div>
+              <h3>Môn 3 - Nhập môn thuật toán</h3>
+              <p>Ghi chú thuật toán, demo code.</p>
+            </div>
+          </div>
+        </div>
+        <div class="footer">
+          <a class="link" href="https://drive.google.com/drive/folders/1oCSCDa0x7T_M11bzWUa282kInrK-RSEO?usp=drive_link" target="_blank">Mở</a>
+          <div class="meta">0 file</div>
+        </div>
+      </div>
+
+      <div class="card" data-title="Môn 4 - Hệ điều hành">
+        <div>
+          <div class="top">
+            <div class="icon ic-4">4</div>
+            <div>
+              <h3>Môn 4 - Công nghệ số</h3>
+              <p>Ghi chú, bài tập thực hành.</p>
+            </div>
+          </div>
+        </div>
+        <div class="footer">
+          <a class="link" href="https://drive.google.com/drive/folders/1KBABh_OvvWMyrAVLiMZFy747q_514eHO?usp=drive_link" target="_blank">Mở</a>
+          <div class="meta">0 file</div>
+        </div>
+      </div>
+
+      <div class="card" data-title="Môn 5 - Cơ sở dữ liệu">
+        <div>
+          <div class="top">
+            <div class="icon ic-5">5</div>
+            <div>
+              <h3>Môn 5 - Thể dục  </h3>
+              <p>Kĩ thuật đá bóng </p>
+            </div>
+          </div>
+        </div>
+        <div class="footer">
+          <a class="link" href="https://drive.google.com/drive/folders/1a7TaCCxx5IzhI6KdGOgacM02M0twgfDG?usp=drive_link" target="_blank">Mở</a>
+          <div class="meta">0 file</div>
+        </div>
+      </div>
+
+      <div class="card" data-title="Môn 6 - Mạng máy tính">
+        <div>
+          <div class="top">
+            <div class="icon ic-6">6</div>
+            <div>
+              <h3>Môn 6 - Định hướng nghề nghiệp</h3>
+              <p>Giao thức, thí nghiệm lab.</p>
+            </div>
+          </div>
+        </div>
+        <div class="footer">
+          <a class="link" href="https://drive.google.com/drive/folders/1UVS6TkDqKXdf_iIIYr-qUPDG4IPl82y3?usp=drive_link" target="_blank">Mở</a>
+          <div class="meta">0 file</div>
+        </div>
+      </div>
+
+      <div class="card" data-title="Môn 7 - Xác suất thống kê">
+        <div>
+          <div class="top">
+            <div class="icon ic-7">7</div>
+            <div>
+              <h3>Môn 7 - cấu trúc và tổ chức máy tính</h3>
+              <p>Lý thuyết, bài toán mẫu.</p>
+            </div>
+          </div>
+        </div>
+        <div class="footer">
+          <a class="link" href="https://drive.google.com/drive/folders/1nE5n5BXIV7HoVPkRX_GDITHI0DpSZAzp?usp=drive_link" target="_blank">Mở</a>
+          <div class="meta">0 file</div>
+        </div>
+      </div>
+
+      <div class="card" data-title="Môn 8 - Kỹ năng mềm">
+        <div>
+          <div class="top">
+            <div class="icon ic-8">8</div>
+            <div>
+              <h3>Môn 8 - cơ sở văn hóa</h3>
+              <p>Tài liệu kỹ năng, slides thuyết trình.</p>
+            </div>
+          </div>
+        </div>
+        <div class="footer">
+          <a class="link" href="https://drive.google.com/drive/folders/1v2BnFVNgaYUxleHjmJnRXjrBiZeHUbzn?usp=drive_link" target="_blank">Mở</a>
+          <div class="meta">0 file</div>
+        </div>
+      </div>
+
+      <div class="card" data-title="Môn 9 - Tiếng Anh chuyên ngành">
+        <div>
+          <div class="top">
+            <div class="icon ic-9">9</div>
+            <div>
+              <h3>Môn 9 - Tiếng Anh cơ sở</h3>
+              <p>Từ vựng, reading, slides.</p>
+            </div>
+          </div>
+        </div>
+        <div class="footer">
+          <a class="link" href="https://drive.google.com/drive/folders/1rHacEeNLMMc1ubXejbL4iNQCExjYST8W?usp=drive_link" target="_blank">Mở</a>
+          <div class="meta">0 file</div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    // Tìm filter (live filter)
+    const input = document.getElementById('searchInput');
+    const cards = Array.from(document.querySelectorAll('.card'));
+    input.addEventListener('input', e => {
+      const q = e.target.value.trim().toLowerCase();
+      cards.forEach(c => {
+        const t = c.dataset.title.toLowerCase();
+        c.style.display = t.includes(q) ? '' : 'none';
+      });
+    });
+
+    // Nút Tùy chỉnh (mở prompt để đổi tên / link nhanh)
+    document.getElementById('customizeBtn').addEventListener('click', ()=>{
+      const i = prompt('Bạn muốn đổi tên (thứ tự 1-9) hay "all" để đổi tất cả? Gõ "1: Tên mới,link" hoặc "all"');
+      if(!i) return;
+      if(i.trim().toLowerCase() === 'all'){
+        alert('Để đổi nhanh nhiều file, chỉnh trực tiếp trong HTML (trong phần <div class=\"grid\">) hoặc nói tên 9 môn cho mình để mình chỉnh sẵn.');
+        return;
+      }
+      // simple parse "1: Tên mới,link"
+      const m = i.split(':');
+      if(m.length < 2){ alert('Sai định dạng. Ví dụ: 2: Lập trình C,subject2/intro.md'); return; }
+      const idx = parseInt(m[0].trim(),10);
+      if(Number.isNaN(idx) || idx<1 || idx>9){ alert('Chỉ nhận 1..9'); return; }
+      const rest = m.slice(1).join(':').trim();
+      const parts = rest.split(',');
+      const name = parts[0].trim();
+      const link = (parts[1]||'#').trim();
+      const card = cards[idx-1];
+      card.querySelector('h3').textContent = name;
+      card.dataset.title = name;
+      card.querySelector('.card .footer a')?.setAttribute('href', link);
+      card.querySelector('.card .footer a')?.setAttribute('href', link);
+      // update link in footer (safer)
+      const footerLink = card.querySelector('.footer a');
+      if(footerLink) footerLink.setAttribute('href', link);
+      alert('Đã cập nhật ô #' + idx + ' → ' + name);
+    });
+  </script>
+</body>
+</html>

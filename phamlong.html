@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lọ Ngũ Giác </title>
+
+<style>
+    *{margin:0; padding:0; box-sizing:border-box;}
+
+    body{
+        height:100vh;
+        font-family:Arial, sans-serif;
+        background:url("anh1.jpg") center/cover no-repeat;
+        display:flex;
+        justify-content:flex-end;  /* đẩy form sang phải */
+        align-items:center;
+    }
+
+    .login-box{
+        width:380px;
+        height:550px; /* làm khung CAO */
+        background: url(anh.jpg);
+        backdrop-filter:blur(12px);
+        border-radius:25px 0 0 25px; /* bo R theo kiểu kéo từ phải */
+        padding:50px;
+        box-shadow:-5px 0 25px rgba(0,0,0,0.3);
+        margin-right:60px; /* cách mép phải */
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        gap:35px;
+        background-size: cover; 
+    }
+
+    h2{
+        font-size:40px;
+        color:rgb(82, 205, 205);
+        font-weight:600;
+        text-align:center;
+    }
+
+    .input-line{
+        border:none;
+        border-bottom:2px solid ;
+        background:transparent;
+        color:black;
+        font-size:18px;
+        padding:10px 5px;
+        transition:.3s;
+    }
+    .input-line:focus{
+        border-bottom-color:blue;
+        outline:none;
+    }
+    ::placeholder{color:rgba(50, 204, 204, 0.8)}
+
+    button{
+        padding:12px;
+        font-size:18px;
+        border:none;
+        border-radius:10px;
+        background:rgba(43, 195, 96, 0.8);
+        color:rgb(0, 255, 251) ;
+        cursor:pointer;
+        transition:.3s;
+    }
+    button:hover{background:rgba(255, 255, 255, 0.612); color:#000;}
+
+    .error{
+        color:red;
+        font-size:14px;
+        display:none;
+        text-align:center;
+    }
+</style>
+</head>
+<body>
+
+<div class="login-box">
+    <h2>Welcome</h2>
+    <input type="text" id="user" class="input-line" placeholder="Tên đăng nhập">
+    <input type="password" id="pass" class="input-line" placeholder="Mật khẩu">
+    <button onclick="login()">Đăng nhập</button>
+    <p class="error" id="errorMsg">Sai tài khoản hoặc mật khẩu!</p>
+</div>
+
+<script>
+function login(){
+    let u = document.getElementById("user").value;
+    let p = document.getElementById("pass").value;
+    if(u=="longugiac" && p=="123456") window.location.href="ech.html";
+    else document.getElementById("errorMsg").style.display="block";
+}
+</script>
+
+</body>
+</html>
+
+    
